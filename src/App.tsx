@@ -15,24 +15,26 @@ function App() {
     let canvas = document.getElementById('canvas') as HTMLCanvasElement;
     let ctx = canvas.getContext('2d');
     ctx!.clearRect(0, 0, canvas.width, canvas.height);
-
+    const widhtCanvas = canvas.width;
+    const heightCanvas = canvas.height;
+    console.log(widhtCanvas, heightCanvas);
     ctx!.beginPath();
     ctx!.lineWidth = 1;
-    ctx!.moveTo(0, 0);
+    ctx!.moveTo(widhtCanvas / 2, heightCanvas);
+
     objetos.map((objeto) => {
       if (objeto.type === 'linha' || objeto.type === 'polilinha') {
         for (let i = 0; i < objeto.x.length; i++) {
-          ctx!.moveTo(objeto.x[i], objeto.y[i]);
-          ctx!.lineTo(objeto.x[i + 1], objeto.y[i + 1]);
+          ctx!.moveTo(widhtCanvas / 2 + objeto.x[i], heightCanvas / 2 + objeto.y[i]);
+          ctx!.lineTo(widhtCanvas / 2 + objeto.x[i + 1], heightCanvas / 2 + objeto.y[i + 1]);
         }
         if (objeto.isPoligono) {
-          ctx!.moveTo(objeto.x[-1], objeto.y[-1]);
-          ctx!.lineTo(objeto.x[0], objeto.y[0]);
-          
+          ctx!.moveTo(widhtCanvas / 2 + objeto.x[-1], heightCanvas / 2 + objeto.y[-1]);
+          ctx!.lineTo(widhtCanvas / 2 + objeto.x[0], heightCanvas / 2 + objeto.y[0]);
         }
       } else {
         for (let i = 0; i < objeto.x.length; i++) {
-          ctx!.fillRect(objeto.x[i], objeto.y[i],1,1);
+          ctx!.fillRect(widhtCanvas / 2 + objeto.x[i], heightCanvas / 2 + objeto.y[i], 1, 1);
         }
       }
     });
@@ -73,8 +75,9 @@ function App() {
         <div className="col-span-2">
           <canvas
             id="canvas"
-            className="w-full border border-gray-400 rounded-lg shadow-lg"></canvas>
-          
+            width="500"
+            height="500"
+            className="w-[500px] border border-gray-400 rounded-lg shadow-lg"></canvas>
         </div>
         <div className="col-span-1 h-full">
           <div className="flex gap-2">
