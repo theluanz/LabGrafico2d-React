@@ -12,12 +12,15 @@ function App() {
   const [typeObjeto, setTypeObjeto] = useState('linha');
   const [objetos, setObjetos] = useState<IObject2d[]>([]);
   const [zoomLevel, setZoomLevel] = useState(1);
+
+  const [localizacao, setLocalizacao] = useState([0, 0]);
+
   useEffect(() => {
     let canvas = document.getElementById('canvas') as HTMLCanvasElement;
     let ctx = canvas.getContext('2d');
     ctx!.clearRect(0, 0, canvas.width, canvas.height);
-    const widhtCanvas = canvas.width;
-    const heightCanvas = canvas.height;
+    const widhtCanvas = canvas.width + localizacao[0] * 25;
+    const heightCanvas = canvas.height + localizacao[1] * 25;
     console.log(widhtCanvas, heightCanvas);
     ctx!.beginPath();
     ctx!.lineWidth = 1;
@@ -43,15 +46,14 @@ function App() {
     // ctx!.fill();
 
     ctx!.stroke();
-  }, [objetos, zoomLevel]);
+  }, [objetos, zoomLevel, localizacao]);
 
   function handleZoomIn() {
+    setZoomLevel(zoomLevel - 0.25);
+  }
+  function handleZoomOut() {
     setZoomLevel(zoomLevel + 0.25);
   }
-   function handleZoomOut() {
-     setZoomLevel(zoomLevel - 0.25);
-   }
-
 
   function addNewObject() {
     if (typeObjeto === 'linha') {
@@ -127,16 +129,24 @@ function App() {
 
           <div>
             <div className="flex gap-1">
-              <button className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0], localizacao[1] - 1])}>
                 Up
               </button>
-              <button className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors">
-                Right
-              </button>
-              <button className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0] - 1, localizacao[1]])}>
                 Left
               </button>
-              <button className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0] + 1, localizacao[1]])}>
+                Right
+              </button>
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0], localizacao[1] + 1])}>
                 Down
               </button>
             </div>
