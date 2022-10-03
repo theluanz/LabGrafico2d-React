@@ -11,6 +11,7 @@ function App() {
   const [nomeObjeto, setNomeObjeto] = useState('');
   const [typeObjeto, setTypeObjeto] = useState('linha');
   const [objetos, setObjetos] = useState<IObject2d[]>([]);
+  const [zoomLevel, setZoomLevel] = useState(1);
   useEffect(() => {
     let canvas = document.getElementById('canvas') as HTMLCanvasElement;
     let ctx = canvas.getContext('2d');
@@ -42,7 +43,15 @@ function App() {
     // ctx!.fill();
 
     ctx!.stroke();
-  }, [objetos]);
+  }, [objetos, zoomLevel]);
+
+  function handleZoomIn() {
+    setZoomLevel(zoomLevel + 0.25);
+  }
+   function handleZoomOut() {
+     setZoomLevel(zoomLevel - 0.25);
+   }
+
 
   function addNewObject() {
     if (typeObjeto === 'linha') {
@@ -75,8 +84,8 @@ function App() {
         <div className="col-span-2">
           <canvas
             id="canvas"
-            width="500"
-            height="500"
+            width={500 * zoomLevel}
+            height={500 * zoomLevel}
             className="w-[500px] border border-gray-400 rounded-lg shadow-lg"></canvas>
         </div>
         <div className="col-span-1 h-full">
@@ -132,10 +141,14 @@ function App() {
               </button>
             </div>
             <div className="flex gap-1">
-              <button className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={handleZoomIn}>
                 Zoom In
               </button>
-              <button className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={handleZoomOut}>
                 Zoom Out
               </button>
             </div>
