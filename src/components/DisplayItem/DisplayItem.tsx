@@ -2,18 +2,23 @@ import { useEffect, useState } from 'react';
 import { IObject2d } from '../../models/IObject2d';
 import { CheckBox } from '../CheckBox/CheckBox';
 import { Input } from '../Input/Input';
+import { Transform } from '../Transform/Transform';
 
 interface IProps {
   item: IObject2d;
   removeItem: (objeto: IObject2d) => void;
   addPoint: (objeto: IObject2d, x: number, y: number) => void;
   updateIsPoligono: (objeto: IObject2d) => void;
+  updateObject: (objeto: IObject2d, newObject: IObject2d) => void;
 }
-function DisplayItem({ item, removeItem, addPoint, updateIsPoligono }: IProps) {
+function DisplayItem({ item, removeItem, addPoint, updateIsPoligono, updateObject }: IProps) {
   const [editMode, setEditMode] = useState(false);
   const [isPoligono, setIsPoligono] = useState(item.isPoligono);
   const [newX, setNewX] = useState(0);
   const [newY, setNewY] = useState(0);
+
+  
+
   useEffect(() => {
     updateIsPoligono(item);
   }, [isPoligono]);
@@ -82,6 +87,7 @@ function DisplayItem({ item, removeItem, addPoint, updateIsPoligono }: IProps) {
               ))}
             </ul>
           </div>
+          <Transform updateObject={updateObject} item={item}/>
         </div>
       )}
     </div>

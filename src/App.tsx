@@ -80,6 +80,16 @@ function App() {
     setObjetos(objetos.filter((item: IObject2d) => item !== objeto));
   }
 
+  function updateObject(objeto: IObject2d, newObject: IObject2d) {
+    const index = objetos.indexOf(objeto);
+
+    objetos[index] = newObject;
+    setObjetos([...objetos]);
+  }
+
+
+
+
   return (
     <div className="w-full max-w-6xl mx-auto p-2">
       <div className="w-full grid grid-cols-3 gap-4">
@@ -122,6 +132,7 @@ function App() {
                   addPoint={addNewPoint}
                   updateIsPoligono={updateIsPoligono}
                   key={objeto.name}
+                  updateObject={updateObject}
                 />
               );
             })}
