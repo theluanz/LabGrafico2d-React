@@ -29,16 +29,16 @@ function App() {
     objetos.map((objeto) => {
       if (objeto.type === 'linha' || objeto.type === 'polilinha') {
         for (let i = 0; i < objeto.x.length; i++) {
-          ctx!.moveTo(widhtCanvas / 2 + objeto.x[i], heightCanvas / 2 + objeto.y[i]);
-          ctx!.lineTo(widhtCanvas / 2 + objeto.x[i + 1], heightCanvas / 2 + objeto.y[i + 1]);
+          ctx!.moveTo(widhtCanvas / 2 + objeto.x[i], heightCanvas / 2 - objeto.y[i]);
+          ctx!.lineTo(widhtCanvas / 2 + objeto.x[i + 1], heightCanvas / 2 - objeto.y[i + 1]);
         }
         if (objeto.isPoligono) {
-          ctx!.moveTo(widhtCanvas / 2 + objeto.x[-1], heightCanvas / 2 + objeto.y[-1]);
-          ctx!.lineTo(widhtCanvas / 2 + objeto.x[0], heightCanvas / 2 + objeto.y[0]);
+          ctx!.moveTo(widhtCanvas / 2 + objeto.x[-1], heightCanvas / 2 - objeto.y[-1]);
+          ctx!.lineTo(widhtCanvas / 2 + objeto.x[0], heightCanvas / 2 - objeto.y[0]);
         }
       } else {
         for (let i = 0; i < objeto.x.length; i++) {
-          ctx!.fillRect(widhtCanvas / 2 + objeto.x[i], heightCanvas / 2 + objeto.y[i], 1, 1);
+          ctx!.fillRect(widhtCanvas / 2 + objeto.x[i], heightCanvas / 2 - objeto.y[i], 1, 1);
         }
       }
     });

@@ -43,7 +43,7 @@ function DisplayItem({ item, removeItem, addPoint, updateIsPoligono }: IProps) {
             <button
               className="px-4 py-2 bg-purple-400 shadow  text-purple-900 rounded-lg hover:bg-purple-500 hover:text-white hover:shadow-lg transition-colors"
               onClick={() => setEditMode(false)}>
-              Salvar
+              Fechar
             </button>
           )}
         </div>
