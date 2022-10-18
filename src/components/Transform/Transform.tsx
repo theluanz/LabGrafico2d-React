@@ -27,11 +27,11 @@ function Transform({ updateObject, item }: IProps) {
   }
   function rotate(angulo: number) {
     function calculeX(x: number, y: number, angulo: number): number {
-      return Math.ceil(x * Math.cos(angulo*Math.PI/180) + y * -Math.sin(angulo*Math.PI/180));
+      return x * Math.cos(angulo * (Math.PI / 180)) + y * -Math.sin(angulo * (Math.PI / 180));
     }
 
     function calculeY(x: number, y: number, angulo: number): number {
-      return Math.ceil(x * Math.cos(angulo*Math.PI/180) + y * Math.sin(angulo*Math.PI/180));
+      return x * Math.cos(angulo * (Math.PI / 180)) + y * Math.sin(angulo * (Math.PI / 180));
     }
 
     item.x = item.x.map((x, index) => calculeX(+x, +item.y[index], +angulo));

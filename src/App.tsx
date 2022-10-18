@@ -99,6 +99,42 @@ function App() {
             width={500 * zoomLevel}
             height={500 * zoomLevel}
             className="w-[500px] border border-gray-400 rounded-lg shadow-lg"></canvas>
+            <div>
+            <div className="flex gap-1">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0], localizacao[1] - 1])}>
+                Up
+              </button>
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0] - 1, localizacao[1]])}>
+                Left
+              </button>
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0] + 1, localizacao[1]])}>
+                Right
+              </button>
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={() => setLocalizacao([localizacao[0], localizacao[1] + 1])}>
+                Down
+              </button>
+            </div>
+            <div className="flex gap-1">
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={handleZoomIn}>
+                Zoom In
+              </button>
+              <button
+                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
+                onClick={handleZoomOut}>
+                Zoom Out
+              </button>
+            </div>
+          </div>
         </div>
         <div className="col-span-1 h-full">
           <div className="flex gap-2">
@@ -138,42 +174,7 @@ function App() {
             })}
           </div>
 
-          <div>
-            <div className="flex gap-1">
-              <button
-                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
-                onClick={() => setLocalizacao([localizacao[0], localizacao[1] - 1])}>
-                Up
-              </button>
-              <button
-                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
-                onClick={() => setLocalizacao([localizacao[0] - 1, localizacao[1]])}>
-                Left
-              </button>
-              <button
-                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
-                onClick={() => setLocalizacao([localizacao[0] + 1, localizacao[1]])}>
-                Right
-              </button>
-              <button
-                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
-                onClick={() => setLocalizacao([localizacao[0], localizacao[1] + 1])}>
-                Down
-              </button>
-            </div>
-            <div className="flex gap-1">
-              <button
-                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
-                onClick={handleZoomIn}>
-                Zoom In
-              </button>
-              <button
-                className="px-4 py-2 mt-2 bg-blue-400 shadow  text-blue-900 rounded-lg hover:bg-blue-500hover:text-white hover:shadow-lg transition-colors"
-                onClick={handleZoomOut}>
-                Zoom Out
-              </button>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
