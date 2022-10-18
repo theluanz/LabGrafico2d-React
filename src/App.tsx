@@ -21,7 +21,6 @@ function App() {
     ctx!.clearRect(0, 0, canvas.width, canvas.height);
     const widhtCanvas = canvas.width + localizacao[0] * 25;
     const heightCanvas = canvas.height + localizacao[1] * 25;
-    console.log(widhtCanvas, heightCanvas);
     ctx!.beginPath();
     ctx!.lineWidth = 1;
     ctx!.moveTo(widhtCanvas / 2, heightCanvas);
@@ -80,11 +79,12 @@ function App() {
     setObjetos(objetos.filter((item: IObject2d) => item !== objeto));
   }
 
-  function updateObject(objeto: IObject2d, newObject: IObject2d) {
-    const index = objetos.indexOf(objeto);
+  function updateObject(objeto: IObject2d) {
+    // const index = objetos.indexOf(objeto);
 
-    objetos[index] = newObject;
+    // objetos[index] = newObject;
     setObjetos([...objetos]);
+    console.log(objetos);
   }
 
 
@@ -124,14 +124,14 @@ function App() {
           </div>
 
           <div className="bg-slate-50 border p-4 mt-4">
-            {objetos.map((objeto: IObject2d) => {
+            {objetos.map((objeto: IObject2d,index) => {
               return (
                 <DisplayItem
                   item={objeto}
                   removeItem={() => removeItem(objeto)}
                   addPoint={addNewPoint}
                   updateIsPoligono={updateIsPoligono}
-                  key={objeto.name}
+                  key={index}
                   updateObject={updateObject}
                 />
               );

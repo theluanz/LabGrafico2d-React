@@ -3,7 +3,7 @@ import { IObject2d } from '../../models/IObject2d';
 import { Input } from '../Input/Input';
 
 interface IProps {
-  updateObject: (objeto: IObject2d, newObject: IObject2d) => void;
+  updateObject: (objeto: IObject2d) => void;
   item: IObject2d;
 }
 
@@ -21,31 +21,27 @@ function Transform({ updateObject, item }: IProps) {
   const [escalonamentoSy, setEscalonamentoSy] = useState(0);
 
   function translate(dx: number, dy: number) {
-    const newObject = item;
-    newObject.x = newObject.x.map((x) => +x + +dx);
-    newObject.y = newObject.y.map((y) => +y + +dy);
-    updateObject(item, newObject);
+    item.x = item.x.map((x) => +x + +dx);
+    item.y = item.y.map((y) => +y + +dy);
+    updateObject(item);
   }
   function rotate(angulo: number) {
-    const newObject = item;
-
     function calculeX(x: number, y: number, angulo: number): number {
-      return Math.round(x * Math.cos(angulo) - y * Math.sin(angulo));
+      return Math.ceil(x * Math.cos(angulo*Math.PI/180) + y * -Math.sin(angulo*Math.PI/180));
     }
 
     function calculeY(x: number, y: number, angulo: number): number {
-      return Math.round(x * Math.cos(angulo) + y * Math.sin(angulo));
+      return Math.ceil(x * Math.cos(angulo*Math.PI/180) + y * Math.sin(angulo*Math.PI/180));
     }
 
-    newObject.x = newObject.x.map((x, index) => calculeX(+x, +newObject.y[index], +angulo));
-    newObject.y = newObject.y.map((y, index) => calculeY(+newObject.x[index], +y, +angulo));
-    updateObject(item, newObject);
+    item.x = item.x.map((x, index) => calculeX(+x, +item.y[index], +angulo));
+    item.y = item.y.map((y, index) => calculeY(+item.x[index], +y, +angulo));
+    updateObject(item);
   }
   function escale(sx: number, sy: number) {
-    const newObject = item;
-    newObject.x = newObject.x.map((x) => +x * +sx);
-    newObject.y = newObject.y.map((y) => +y * +sy);
-    updateObject(item, newObject);
+    item.x = item.x.map((x) => +x * +sx);
+    item.y = item.y.map((y) => +y * +sy);
+    updateObject(item);
   }
 
   return (

@@ -9,7 +9,7 @@ interface IProps {
   removeItem: (objeto: IObject2d) => void;
   addPoint: (objeto: IObject2d, x: number, y: number) => void;
   updateIsPoligono: (objeto: IObject2d) => void;
-  updateObject: (objeto: IObject2d, newObject: IObject2d) => void;
+  updateObject: (objeto: IObject2d) => void;
 }
 function DisplayItem({ item, removeItem, addPoint, updateIsPoligono, updateObject }: IProps) {
   const [editMode, setEditMode] = useState(false);
@@ -81,7 +81,7 @@ function DisplayItem({ item, removeItem, addPoint, updateIsPoligono, updateObjec
             <p>Pontos cadastrados</p>
             <ul>
               {item.x.map((point, index) => (
-                <li key={item.x[index] + item.y[index]}>
+                <li key={index}>
                   X {item.x[index]} - Y{item.y[index]}
                 </li>
               ))}
