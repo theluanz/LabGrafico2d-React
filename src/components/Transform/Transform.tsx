@@ -31,13 +31,10 @@ function Transform({ updateObject, item }: IProps) {
 
     function calculeX(x: number, y: number, angulo: number): number {
       const radians = +((Math.PI / 180) * angulo).toFixed(5);
+      // const radians = angulo
+
       console.log(
-        `X = (${x} * ${Math.cos(radians).toFixed(4)}) - (${y} * ${Math.sin(
-          radians,
-        ).toFixed(4)})= ${+(
-          x * +Math.cos(radians).toFixed(4) -
-          y * +Math.sin(radians).toFixed(4)
-        ).toFixed(4)}`,
+        `X = (${x} * ${+Math.cos(radians).toFixed(4)}) - (${y} * ${Math.sin(radians).toFixed(4)})= ${+(x * +Math.cos(radians).toFixed(5) - y * +Math.sin(radians).toFixed(4)).toFixed(4)}`,
       );
 
       return +(x * +Math.cos(radians).toFixed(5) - y * +Math.sin(radians).toFixed(4)).toFixed(4);
@@ -45,15 +42,11 @@ function Transform({ updateObject, item }: IProps) {
 
     function calculeY(x: number, y: number, angulo: number): number {
       const radians = +((Math.PI / 180) * angulo).toFixed(5);
+      // const radians = angulo
       console.log(
-        `Y = (${x} * ${Math.cos(radians).toFixed(4)}) + (${y} * ${Math.sin(
-          radians,
-        ).toFixed(4)})= ${+(
-          x * +Math.cos(radians).toFixed(4) -
-          y * +Math.sin(radians).toFixed(4)
-        ).toFixed(4)}`,
+        `Y = (${x} * ${+Math.sin(radians).toFixed(4)}) + (${y} * ${Math.cos(radians).toFixed(4)})= ${+(x * +Math.sin(radians).toFixed(4) + y * +Math.cos(radians).toFixed(4)).toFixed(4)}`,
       );
-      return +(x * +Math.cos(radians).toFixed(4) + y * +Math.sin(radians).toFixed(4)).toFixed(4);
+      return +(x * +Math.sin(radians).toFixed(4) + y * +Math.cos(radians).toFixed(4)).toFixed(4);
     }
 
     item.x = item.x.map((x, index) => calculeX(+xOldValues[index], +yOldValues[index], +angulo));
